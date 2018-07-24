@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {IUser} from '../../model/user.model';
+import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -17,7 +20,9 @@ export class RegistrationComponent implements OnInit {
     'minlength': 'Min length 3'
   };
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
@@ -45,6 +50,15 @@ export class RegistrationComponent implements OnInit {
         }
       });
     });
+  }
+
+  register(user: IUser) {
+    const result = this.userService.registration(user);
+    if (result.status) {
+      this.router.navigateByUrl('/app');
+    } else {
+      this.errorMessage = result.errMessage;
+    }
   }
 
 }

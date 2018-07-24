@@ -5,12 +5,13 @@ import {IUser} from '../model/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-  public isLogin = false;
+  public isAuth = false;
   private isVerified = false;
   constructor() { }
 
 
   signUp(user: IUser): IUser {
+    this.isAuth = true;
     return ({
       ...user,
       id: +Date.now()
@@ -18,11 +19,11 @@ export class AuthService {
   }
 
   signIn(): void {
-    this.isLogin = true;
+    this.isAuth = true;
   }
 
   signOut(): void {
-    this.isLogin = false;
+    this.isAuth = false;
   }
 
 }

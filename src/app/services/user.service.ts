@@ -13,7 +13,7 @@ export class UserService {
   public isVerified = false;
 
   constructor(private authService: AuthService,
-              private usersService: UsersService) { }
+              private usersService: UsersService) {}
 
 
 
@@ -33,11 +33,19 @@ export class UserService {
     }
   }
 
-  registration(user: IUser): any {
+  registration(user: IUser) {
     if (this.usersService.isExicteted(user.email)) {
-      return 'User with same email exicted';
+      return ({
+        status: false,
+        errMessage: 'User with same email exicted',
+      });
     } else {
       this.user = this.authService.signUp(user);
+      this.usersService.push(this.user);
+      return ({
+        status: true,
+        errMessage: null,
+      });
     }
   }
 
