@@ -1,3 +1,21 @@
-<p>
-  login works!
-</p>
+<div class="form-error">{{ errorMessage }}</div>
+
+<form [formGroup]="signInForm" (submit)="signIn(signInForm.value)">
+  <div class="form-group">
+    <h1>Sign in</h1>
+    <mat-form-field>
+      <input matInput placeholder="Enter your email" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your password" type="password" formControlName="password">
+    </mat-form-field>
+
+    <input type="submit" class="button expanded" value="Sign in" [disabled]="signInForm.invalid">
+  </div>
+  No accout? <a [routerLink]="['/sign-up']">Sign up</a>
+  forgot password? <a [routerLink]="['/forgot']">get password</a>
+</form>
+<a [routerLink]="['/app']">app</a>
+<button (click)="signOut()">signOut</button>
+

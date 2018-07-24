@@ -9,10 +9,12 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatSelectModule,
+  MatFormFieldModule,
   MatDialogModule
 } from '@angular/material';
 
 export const MODULES = [
+  MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
   MatCardModule,

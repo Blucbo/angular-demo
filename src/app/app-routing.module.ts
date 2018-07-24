@@ -5,6 +5,7 @@ import {RegistrationComponent} from './components/registration/registration.comp
 import {ForgotComponent} from './components/forgot/forgot.component';
 import {CredentialComponent} from './components/credential/credential.component';
 import {AuthGuard} from './auth.guard';
+import {ShowpassGuard} from './showpass.guard';
 
 const routes: Routes = [
   {
@@ -15,23 +16,27 @@ const routes: Routes = [
   {
     path: 'app',
     loadChildren: './main/main.module#MainModule',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'sign-in',
     component: LoginComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'sign-up',
     component: RegistrationComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'forgot',
     component: ForgotComponent,
     children: [
-      { path: 'reset', component: CredentialComponent }
+      {
+        path: 'reset',
+        component: CredentialComponent,
+        canActivate: [ShowpassGuard],
+      }
     ]
   },
   {
