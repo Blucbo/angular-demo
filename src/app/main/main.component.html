@@ -1,0 +1,8 @@
+<nav>
+  <a [routerLink]="['profile']">profile</a>
+  <a [routerLink]="['users']">users</a>
+  <a [routerLink]="['/sign-in']">sign-in (not work for test)</a>
+  <button mat-stroked-button (click)="signOut()">sign out</button>
+</nav>
+
+<router-outlet></router-outlet>

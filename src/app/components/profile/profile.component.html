@@ -1,0 +1,30 @@
+<form [formGroup]="profileForm" (submit)="applyChanges(profileForm.value)" >
+  <div class="form-group">
+    <h1>Edit an account</h1>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your First Name" formControlName="firstName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your Last Name" formControlName="lastName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your email" formControlName="email" required>
+      <mat-error *ngIf="errorMessages.email">{{errorMessages.email}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your password" formControlName="password" required>
+      <mat-error *ngIf="errorMessages.password">{{errorMessages.password}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your birth year" type="number" formControlName="birthYear" required>
+      <mat-error *ngIf="errorMessages.birthYear">{{errorMessages.birthYear}}</mat-error>
+    </mat-form-field>
+
+    <input type="submit" class="button expanded" value="Apply changes" [disabled]="profileForm.invalid">
+  </div>
+</form>
