@@ -65,6 +65,23 @@ export class UserService {
     this.user = user;
   }
 
+  getPassword(email: string) {
+    const [user] = this.usersService.getUsers().filter(user => user.email === email);
+    if (!!user) {
+      this.save(user);
+      this.isVerified = true;
+      return ({
+        status: true,
+        errMessage: null,
+      });
+    } else {
+      return ({
+        status: false,
+        errMessage: 'User not found',
+      });
+    }
+  }
+
   exitUser(): void {
     this.user = null;
     this.authService.signOut();

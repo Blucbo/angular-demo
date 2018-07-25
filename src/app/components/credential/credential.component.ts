@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
+import {IUser} from '../../model/user.model';
 
 @Component({
   selector: 'app-credential',
@@ -10,10 +11,10 @@ export class CredentialComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
-  user;
+  public user: IUser;
+
   ngOnInit() {
-    // todo get user pass by email
-    // this.user = this.userService.getUser;
+    this.user = this.userService.getUser();
   }
 
 }

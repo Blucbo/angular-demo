@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-forgot',
@@ -18,6 +19,7 @@ export class ForgotComponent implements OnInit {
   };
 
   constructor(private fb: FormBuilder,
+              private userService: UserService,
               private router: Router) { }
 
   ngOnInit() {
@@ -45,10 +47,13 @@ export class ForgotComponent implements OnInit {
     });
   }
 
-  getPassword(email) {
-    // todo check email
+  getPassword({email}) {
     console.log('email', email);
-    // call user verified
-    this.router.navigateByUrl('forgot/reset');
+    const result = this.userService.getPassword(email);
+    if (result.status) {
+      this.router.navigateByUrl('forgot/reset');
+    } else {
+      this.errorMessage = result.errMessage;
+    }
   }
 }
