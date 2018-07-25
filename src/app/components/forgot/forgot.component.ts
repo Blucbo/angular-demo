@@ -23,6 +23,7 @@ export class ForgotComponent implements OnInit {
   ngOnInit() {
     this.forgotForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
+      mathTask: ['', [Validators.requiredTrue]],
     });
 
     this.forgotForm.valueChanges.subscribe( data => {

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 
 import {
   MatInputModule,
+  MatTableModule,
+  MatSortModule,
   MatButtonModule,
   MatCardModule,
   MatExpansionModule,
@@ -10,11 +12,13 @@ import {
   MatToolbarModule,
   MatSelectModule,
   MatFormFieldModule,
-  MatDialogModule
+  MatDialogModule,
 } from '@angular/material';
 
 export const MODULES = [
   MatFormFieldModule,
+  MatSortModule,
+  MatTableModule,
   MatInputModule,
   MatButtonModule,
   MatCardModule,

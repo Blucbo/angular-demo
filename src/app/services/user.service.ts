@@ -8,7 +8,7 @@ import {UsersService} from './users.service';
 })
 export class UserService {
 
-  public user: IUser;
+  private user: IUser;
 
   public isVerified = false;
 
@@ -28,8 +28,15 @@ export class UserService {
     if (!!user) {
       this.save(user);
       this.authService.signIn();
+      return ({
+        status: true,
+        errMessage: null,
+      });
     } else {
-      return 'User not found';
+      return ({
+        status: false,
+        errMessage: 'User not found',
+      });
     }
   }
 
@@ -49,12 +56,18 @@ export class UserService {
     }
   }
 
+  update(user: IUser): any {
+    this.usersService.update(user);
+    this.save(user);
+  }
+
   save(user: IUser): void {
     this.user = user;
   }
 
-  deleteUser(): void {
+  exitUser(): void {
     this.user = null;
+    this.authService.signOut();
   }
 
   verified() {

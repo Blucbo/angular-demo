@@ -20,6 +20,12 @@ export class UsersService {
     return !!user;
   }
 
+  update(user: IUser): void {
+    const indexOfUserDisconnected = this.users.findIndex(u => u.id === user.id);
+    this.users.splice(indexOfUserDisconnected, 1);
+    this.push(user);
+  }
+
   saveUsers() {
     localStorage.setItem('users', JSON.stringify(this.users));
   }

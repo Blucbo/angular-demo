@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   public errorMessage;
 
   constructor(private router: Router,
+              private userService: UserService,
               private fb: FormBuilder) {
   }
 
@@ -24,6 +26,11 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(credentials) {
-
+    const result = this.userService.login(credentials.email, credentials.password);
+    if (result.status) {
+      this.router.navigateByUrl('/app');
+    } else {
+      this.errorMessage = result.errMessage;
+    }
   }
 }

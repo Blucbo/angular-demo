@@ -6,6 +6,9 @@ import {ForgotComponent} from './components/forgot/forgot.component';
 import {CredentialComponent} from './components/credential/credential.component';
 import {AuthGuard} from './auth.guard';
 import {ShowpassGuard} from './showpass.guard';
+import {MainComponent} from './main/main.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {UsersComponent} from './components/users/users.component';
 
 const routes: Routes = [
   {
@@ -15,8 +18,23 @@ const routes: Routes = [
   },
   {
     path: 'app',
-    loadChildren: './main/main.module#MainModule',
+    redirectTo: '/app/profile',
+    pathMatch: 'full',
+  },
+  {
+    path: 'app',
+    component: MainComponent,
     canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+      },
+    ]
   },
   {
     path: 'sign-in',

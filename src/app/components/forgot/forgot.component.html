@@ -5,11 +5,10 @@
       <input matInput placeholder="Enter your email" formControlName="email">
       <mat-error *ngIf="errorMessages.email">{{errorMessages.email}}</mat-error>
     </mat-form-field>
-
+    <app-math-task formControlName="mathTask"></app-math-task>
     <input type="submit" class="button expanded" value="get password" [disabled]="forgotForm.invalid">
   </div>
   Have account? <a [routerLink]="['/sign-in']">Sign in</a>
 
 </form>
-
 <router-outlet></router-outlet>
