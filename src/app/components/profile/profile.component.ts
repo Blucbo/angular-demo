@@ -13,8 +13,11 @@ export class ProfileComponent implements OnInit {
   public loadedProfile: IUser;
   public profileForm: FormGroup;
 
-  public errorMessages = {};
-
+  public errorMessages = {
+    email: '',
+    password: '',
+    birthYear: ''
+  };
   public errors = {
     'required': 'This field is required',
     'email': 'Not match email',
