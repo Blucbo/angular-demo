@@ -11,7 +11,9 @@ import {UserService} from '../../services/user.service';
 export class ForgotComponent implements OnInit {
   public forgotForm: FormGroup;
   public errorMessage: string;
-  public errorMessages = {};
+  public errorMessages = {
+    email: ''
+  };
 
   public errors = {
     'required': 'This field is required',

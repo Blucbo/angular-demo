@@ -12,7 +12,11 @@ import {Router} from '@angular/router';
 export class RegistrationComponent implements OnInit {
   public registrationForm: FormGroup;
   public errorMessage: string;
-  public errorMessages = {};
+  public errorMessages = {
+    email: '',
+    password: '',
+    birthYear: ''
+  };
 
   public errors = {
     'required': 'This field is required',
